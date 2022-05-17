@@ -22,7 +22,7 @@ function conectDB(string $connectionStr, string $dbUser, string $dbPassword){
 function create_N_records_Sql(string $sql,int $countRec):string{
     for ($i = 0; $i < $countRec; $i++){
         $j = $i + 1;
-        $sql.= "('Товар '$j,10$i.00,'Ну прям очень хороший Товар № $j')";
+        $sql.= "('Товар $j',10$i.00,'Ну прям очень хороший Товар № $j')";
         if ($i < $countRec -1){
             $sql .=",";
         }
