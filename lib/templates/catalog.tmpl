@@ -1,0 +1,19 @@
+<h2>{{header}}</h2><br>
+<div class="products">
+  {% for key,file in files %}
+    <div class="products-item">
+      <h2 class="head">Картинка №{{ key+1 }}</h2>
+      <div class="imgbox">
+       <h3> {{ file['id'] }}</h3>
+       <h3> {{ file['name'] }}</h3>
+       <h3> {{ file['price'] }}</h3>
+       <h3> {{ file['description'] }}</h3>
+      {#
+        <a href='?file={{ file }}&key={{ key+1 }}' target='_self'>
+          <img src='{{ images}}{{ file }}' alt='product' class="img">
+        </a> 
+        #}
+      </div>
+    </div>
+  {% endfor %}
+</div>    
