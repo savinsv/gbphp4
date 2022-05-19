@@ -1,7 +1,7 @@
 <h2>{{header}}</h2><br>
 <div class="products">
   {% for key,good in goods %}
-    <div class="products-item">
+    <div class="products-item" data-id={{ good['id'] }}>
       <h2 class="head">Картинка №{{ key+1 }}</h2>
       <div class="imgbox">
        <h3> {{ good['id'] }}</h3>
