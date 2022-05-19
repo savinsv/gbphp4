@@ -32,15 +32,15 @@
            $id = 0; 
           $sql_get ="SELECT * FROM goods WHERE id > $id LIMIT 10";
           $rows = $db->query($sql_get);
-          $files = $rows->fetchAll();  
+          $goods = $rows->fetchAll();  
 
        //  var_dump($files1);   
 
           $contentTmpl = $twig->loadTemplate('catalog.tmpl');
           $content = $contentTmpl->render(array(
             'header' => 'Все картинки...',
-            'files'=> $files,
-            'images' => $images,
+            'goods'=> $goods,
+//            'images' => $images,
           ));
 
         // подгружаем шаблон
