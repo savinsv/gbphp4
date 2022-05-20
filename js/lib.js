@@ -15,7 +15,10 @@ let upload = {
  */
 function makeData(inData) {
   let data = new FormData();
-  data.append("postData", JSON.stringify(inData));
+  Object.entries(inData).forEach(([key,value])=>{
+    data.append(key,value);
+  });
+  //data.append(JSON.stringify(inData));
   return data;
 }
 function ajax(data) {
