@@ -20,7 +20,11 @@
 //        echo $db->errorCode();
         echo "Количество добавленныйх записей:". $countInTable;
     }
-   
+
+    echo $_POST;
+    echo $_POST['good'];
+
+
     require_once $rootDir."/lib/Twig/Autoloader.php";
     Twig_Autoloader::register();
 
@@ -30,7 +34,7 @@
         // инициализируем Twig
         $twig = new Twig_Environment($loader);
            $id = 0; 
-          $sql_get ="SELECT * FROM goods WHERE id > $id LIMIT 10";
+          $sql_get ="SELECT * FROM goods WHERE id > $id LIMIT 3";
           $rows = $db->query($sql_get);
           $goods = $rows->fetchAll();  
 

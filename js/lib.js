@@ -1,14 +1,25 @@
-let id_product = 321;
+/* let id_product = 321;
 let qty_product = 2;
 
 let upload = {
     "id_product": id_product,
     "qty_product": qty_product
 };
-let data = new FormData();
-data.append("json", JSON.stringify(upload));
+ */
+let id_product = 321;
+let qty_product = 2;
+let upload = {
+    "id_product": id_product,
+    "qty_product": qty_product
+};
 
-fetch("index.php",
+function makeData(inData){
+    let data = new FormData();
+    data.append("good", 10);
+    return data;
+}
+function ajax(data){
+fetch("/ajax.php",
     {
         method: "POST",
         body: data
@@ -23,3 +34,18 @@ fetch("index.php",
         console.log(JSON.stringify(data))
     })
     .catch(() => console.log('ошибка'));
+}
+    
+    
+    function handler1(e){
+        e.preventDefault();
+        let elems = document.getElementsByClassName("products-item");
+        let lastId=elems.item(elems.length-1).attributes['data-id'].nodeValue;
+        console.log(lastId);
+        ajax(makeData(upload));
+       //ajax(lastId); 
+       //ajax(makeData({"good": lastId}));
+//        console.log("Работает клик!!!");
+    };
+    let btn = document.getElementById('btn');
+    btn.addEventListener("click", handler1);
