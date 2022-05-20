@@ -21,8 +21,8 @@
         echo "Количество добавленныйх записей:". $countInTable;
     }
 
-    echo $_POST;
-    echo $_POST['good'];
+    //echo $_POST;
+    //echo $_POST['good'];
 
 
     require_once $rootDir."/lib/Twig/Autoloader.php";
