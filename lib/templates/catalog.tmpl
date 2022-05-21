@@ -1,21 +1,6 @@
 <h2>{{header}}</h2><br>
 <div class="products">
-  {% for key,good in goods %}
-    <div class="products-item" data-id={{ good['id'] }}>
-      <h2 class="head">Картинка №{{ key+1 }}</h2>
-      <div class="imgbox">
-       <h3> {{ good['id'] }}</h3>
-       <h3> {{ good['name'] }}</h3>
-       <h3> {{ good['price'] }}</h3>
-       <h3> {{ good['description'] }}</h3>
-      {#
-        <a href='?file={{ file }}&key={{ key+1 }}' target='_self'>
-          <img src='{{ images}}{{ file }}' alt='product' class="img">
-        </a> 
-        #}
-      </div>
-    </div>
-  {% endfor %}
-      <a href='#' id='btn'>Показать ещё </a> 
+  {% include 'products.tmpl' %}
+</div>
+<a href='#' id='btn'>Показать ещё </a> 
 
-</div>    

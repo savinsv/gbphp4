@@ -1,28 +1,18 @@
 <?php
     $rootDir = $_SERVER['DOCUMENT_ROOT'];
 
-    include_once $rootDir ."/lib/db/db.php";
+    
+    include_once $rootDir ."/lib/lib.php";
 
-    $db = conectDB($connect_str,DB_USER,DB_PASSWORD);
-
-    $sql = "INSERT INTO goods (name,price,description) VALUES ";
 
 
     $query = create_N_records_Sql($sql,100);
     $countInTable = (int)$db->query("SELECT count(*) FROM `goods`")->fetchColumn();
- //   var_dump($countInTable === 0);
- //   echo "<br>Записей в таблице: ". $countInTable ."<br>";
- //   echo $query ."<br>";
  
     if ($countInTable === 0 ){
- //       echo "<br> Ноль записей";
         $countInTable = $db->exec($query);
-//        echo $db->errorCode();
         echo "Количество добавленныйх записей:". $countInTable;
     }
-
-    //echo $_POST;
-    //echo $_POST['good'];
 
 
     require_once $rootDir."/lib/Twig/Autoloader.php";
@@ -33,18 +23,13 @@
         $loader = new Twig_Loader_Filesystem("{$rootDir}/lib/templates");
         // инициализируем Twig
         $twig = new Twig_Environment($loader);
-           $id = 0; 
-          $sql_get ="SELECT * FROM goods WHERE id > $id LIMIT 3";
-          $rows = $db->query($sql_get);
-          $goods = $rows->fetchAll();  
 
-       //  var_dump($files1);   
+           $goods = getNrecrds($db,$id,$pack);  
 
           $contentTmpl = $twig->loadTemplate('catalog.tmpl');
           $content = $contentTmpl->render(array(
             'header' => 'Все картинки...',
             'goods'=> $goods,
-//            'images' => $images,
           ));
 
         // подгружаем шаблон

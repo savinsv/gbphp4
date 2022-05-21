@@ -28,5 +28,10 @@ function create_N_records_Sql(string $sql,int $countRec):string{
         }
     }
     return $sql;
+}
 
+function getNrecrds($dbConnect,int $id, int $pack){
+    $sql_get ="SELECT * FROM goods WHERE id > $id AND id < ($id+1+$pack)";
+    $rows = $dbConnect->query($sql_get);
+    return $rows->fetchAll();  
 }

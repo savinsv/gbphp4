@@ -1,0 +1,11 @@
+  {% for key,good in goods %}
+    <div class="products-item" data-id={{ good['id'] }}>
+      <h2 class="head">Продукт №{{ good['id'] }}</h2>
+      <div class="imgbox">
+       <h3> {{ good['id'] }}</h3>
+       <h3> {{ good['name'] }}</h3>
+       <h3> {{ good['price'] | number_format(2, '.', ' ') }}</h3>
+       <h3> {{ good['description'] }}</h3>
+      </div>
+    </div>
+  {% endfor %}

@@ -1,30 +1,26 @@
 <?php
-//echo $_SERVER['REQUEST_METHOD'];
+    $rootDir = $_SERVER['DOCUMENT_ROOT'];
+    include_once $rootDir ."/lib/lib.php";
 
-var_dump($_POST);
-$good = (int)$_POST['good'];
-echo is_int($good) ? $good ." - integer" : $good ." not integer" ;
-//foreach($_POST as $key => $value){
- //   echo $key .": ".$value;
-//}
+    if ($_SERVER['REQUEST_METHOD']=== 'POST' && $_POST['good']){
+        $good = (int)$_POST['good'];
 
-//$data = $_POST['postData'];
+        require_once $rootDir."/lib/Twig/Autoloader.php";
+        Twig_Autoloader::register();
+    
+        try {
+            $loader = new Twig_Loader_Filesystem("{$rootDir}/lib/templates");
+            $twig = new Twig_Environment($loader);
 
-
-//var_dump($data);
-//var_dump(json_decode($data));
-
-//$obj = json_decode($data);
-//var_dump($obj);
-
-//echo $obj->good;
-
-
-//$json = file_get_contents('php://input');
-//$data = json_decode($json);
-//echo ' Из php://input '.$data;
-$answ = array('ans'=>'good','data'=>20);
-
-//echo json_encode($obj->answ);
-//var_dump($answ);
-//echo json_encode($answ,JSON_FORCE_OBJECT);
+            $goods = getNrecrds($db,$good,$pack);
+            $contentTmpl = $twig->loadTemplate('products.tmpl');
+            $content = $contentTmpl->render(array(
+              'goods'=> $goods,
+            ));
+            echo $content;
+    
+        }catch (Exception $e) {
+            die ('ERROR: ' . $e->getMessage());
+        };
+    
+    };
