@@ -1,0 +1,49 @@
+/*** FETCH + JSON  + POST ***/
+/*let id_product = 321;
+ let qty_product = 2;
+ let data = {
+ "id_product": id_product,
+ "qty_product": qty_product
+ };
+
+ data = JSON.stringify(data);
+
+ fetch("ajax_quest.php", {
+ method: "POST",
+ body: data,
+ headers: {"Content-type": "application/json"}
+ })
+ .then(response => {
+ if (response.status !== 200) {
+ return Promise.reject();
+ }
+ return response.json();
+ })
+ .then(i => console.log(i))
+ .catch(() => console.log('ошибка'));*/
+/************************************************************/
+let id_product = 321;
+let qty_product = 2;
+
+let upload = {
+    "id_product": id_product,
+    "qty_product": qty_product
+};
+let data = new FormData();
+data.append("json", JSON.stringify(upload));
+
+fetch("ajax_quest.php",
+    {
+        method: "POST",
+        body: data
+    })
+    .then(response => {
+        if (response.status !== 200) {
+            return Promise.reject();
+        }
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(JSON.stringify(data))
+    })
+    .catch(() => console.log('ошибка'));
